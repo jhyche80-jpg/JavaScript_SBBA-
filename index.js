@@ -15,13 +15,21 @@ const OrgCat = document.getElementById("orgcat");
 const OrgDue = document.getElementById("orgdue");
 const OrgImport = document.getElementById("orgimpot");
 const SortMenu = document.getElementById("Sort")
-
+function loadTasks() {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+        Task.push(...JSON.parse(savedTasks)); 
+    }
+    renderTasks(Task, SortMenu.value);
+}
+loadTasks();
 VeryImp.addEventListener("click", () => (selectedImportance = "Very"))
 NormalImp.addEventListener("click", () => (selectedImportance = "Normal"))
 NotImp.addEventListener("click", () => (selectedImportance = "Not"))
 function SaveTask(){
     localStorage.setitem("task", JSON.stringify(task))
 }
+
 function renderTasks(tasksToRender = Task, sortBy ="") {
     listItem.innerHTML = "";
     if(sortBy=== "Alphabetical"){
@@ -60,6 +68,9 @@ function renderTasks(tasksToRender = Task, sortBy ="") {
         todo.addEventListener("click", function () {
            todo.classList.toggle("completed");
            t.completed = !t.completed;
+        if(t.completed) todo.classList.remove("overdue");
+
+        savedTasks();
         });
 
         listItem.appendChild(todo);
