@@ -53,7 +53,8 @@ Write functions to add tasks, update task status, check overdue tasks, and filte
     - Test Your Application
 
 3. Add multiple tasks and ensure they are displayed correctly.
-    - Test the “Update Status” functionality to ensure tasks can be marked as “Completed” or “Overdue.”
+    - Test the “Update Status” functionality to ensure tasks can be marked as “Completed” or 
+    “Overdue.”
     - Filter tasks by status or category and ensure the correct tasks are displayed.
     - Refresh the page and ensure the tasks are restored from local storage.
 
@@ -61,8 +62,15 @@ Write functions to add tasks, update task status, check overdue tasks, and filte
 ## What I did 
 
 1. I made the HTML for the page.
- - I started with making the page without stylingto have a basic, skeleton to work on to ensure the coding works when i move to js file. 
- 
+ - I started with making the page without stylingto have a basic, skeleton to work on to 
+ ensure the coding works when i move to js file. 
+ - After making the skeleton I moved on to the Java script of the page. 
+2. I moved to Javascript
+    - in this point I started by asigning the ID's a connst value. 
+    - I wanna start with making an aoo that could at the very least take down the information into a table or list 
+    and have all the info present. 
+
+
 
 ## What was used 
 -  JavaScript
