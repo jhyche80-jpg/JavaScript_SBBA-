@@ -19,7 +19,9 @@ const SortMenu = document.getElementById("Sort")
 VeryImp.addEventListener("click", () => (selectedImportance = "Very"))
 NormalImp.addEventListener("click", () => (selectedImportance = "Normal"))
 NotImp.addEventListener("click", () => (selectedImportance = "Not"))
-
+function SaveTask(){
+    localStorage.setitem("task", JSON.stringify(task))
+}
 function renderTasks(tasksToRender = Task, sortBy ="") {
     listItem.innerHTML = "";
     if(sortBy=== "Alphabetical"){
@@ -46,9 +48,7 @@ function renderTasks(tasksToRender = Task, sortBy ="") {
             today.setHours(0,0,0,0);
             if (dueDate < Today && !t.Completed){
                 todo.classList.add("overdue")
-
             }
-
         }
         todo.innerHTML = `
             <td>${t.Task}</td>
@@ -67,6 +67,7 @@ function renderTasks(tasksToRender = Task, sortBy ="") {
 } 
 SortMenu.addEventListener("change", function(){
     renderTasks(Task, SortMenu.value)
+    SaveTask()
 })
 
 InputBtn.addEventListener("click", function () {
@@ -98,6 +99,7 @@ InputBtn.addEventListener("click", function () {
     Task.push(newtask);
 
     renderTasks(Task, SortMenu.value);
+    SaveTask()
     
     InputTask.value = "";
     DueDate.value = "";
