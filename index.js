@@ -18,7 +18,7 @@ const SortMenu = document.getElementById("Sort")
 function loadTasks() {
     const savedTasks = localStorage.getItem("tasks");
     if (savedTasks) {
-        Task.push(...JSON.parse(savedTasks)); 
+        Task.push(...JSON.parse(savedTasks));
     }
     renderTasks(Task, SortMenu.value);
 }
@@ -30,37 +30,37 @@ NormalImp.addEventListener("click", () => (selectedImportance = "Normal"))
 NotImp.addEventListener("click", () => (selectedImportance = "Not"))
 
 // localStorage
-function SaveTask(){
-    localStorage.setitem("task", JSON.stringify(task))
+function SaveTask() {
+    localStorage.setItem("tasks", JSON.stringify(Task));
 }
 //rendering task
-function renderTasks(tasksToRender = Task, sortBy ="") {
+function renderTasks(tasksToRender = Task, sortBy = "") {
     listItem.innerHTML = "";
     // sorting the task
-    if(sortBy=== "Alphabetical"){
-        tasksToRender.sort((a,b) => a.Task.localeCompare(b.Task));
-    }else if (sortBy === "Date") {
+    if (sortBy === "Alphabetical") {
+        tasksToRender.sort((a, b) => a.Task.localeCompare(b.Task));
+    } else if (sortBy === "Date") {
         tasksToRender.sort((a, b) => new Date(a.Due) - new Date(b.Due));
     } else if (sortBy === "Importance") {
         const importanceOrder = { "Very": 1, "Normal": 2, "Not": 3 };
         tasksToRender.sort((a, b) => (importanceOrder[a.Importance] || 4) - (importanceOrder[b.Importance] || 4));
     } else if (sortBy === "Category") {
         tasksToRender.sort((a, b) => a.Category.localeCompare(b.Category));
-    }else if (sortBy === "Completed"){
-       tasksToRender.sort((a, b) => (a.Completed === b.Completed? 0 : a.Completed? 1: -1));
+    } else if (sortBy === "Completed") {
+        tasksToRender.sort((a, b) => (a.Completed === b.Completed ? 0 : a.Completed ? 1 : -1));
     }
 
     tasksToRender.forEach((t) => {
         const todo = document.createElement("tr");
-        if (t.completed){
-             todo.classList.add("completed");;
+        if (t.completed) {
+            todo.classList.add("completed");;
         }
-        if(t.due !== " No Due Date"){
-            const dueDate = new Date(t.due);
+        if (t.Due !== "No due date") {
+            const dueDate = new Date(t.Due);
             const today = new Date();
-            today.setHours(0,0,0,0);
-            if (dueDate < Today && !t.Completed){
-                todo.classList.add("overdue")
+            today.setHours(0, 0, 0, 0);
+            if (dueDate < today && !t.Completed) {
+                todo.classList.add("overdue");
             }
         }
         todo.innerHTML = `
@@ -71,17 +71,17 @@ function renderTasks(tasksToRender = Task, sortBy ="") {
         `;
 
         todo.addEventListener("click", function () {
-           todo.classList.toggle("completed");
-           t.completed = !t.completed;
-        if(t.completed) todo.classList.remove("overdue");
+            todo.classList.toggle("completed");
+            t.completed = !t.completed;
+            if (t.completed) todo.classList.remove("overdue");
 
-        savedTasks();
+            SaveTask();
         });
 
         listItem.appendChild(todo);
     });
-} 
-SortMenu.addEventListener("change", function(){
+}
+SortMenu.addEventListener("change", function () {
     renderTasks(Task, SortMenu.value)
     SaveTask()
 })
@@ -90,8 +90,8 @@ InputBtn.addEventListener("click", function () {
     const TaskText = InputTask.value.trim();
     const Duetext = DueDate.value.trim();
     const selectedCategory = categoryMenu.value;
-    
-    
+
+
 
     if (TaskText === "") {
         errormsg.innerText = "Please enter a task!";
@@ -108,7 +108,7 @@ InputBtn.addEventListener("click", function () {
         Task: TaskText,
         Category: selectedCategory,
         Due: Duetext || "No due date",
-        Importance: selectedImportance || "Not specified", 
+        Importance: selectedImportance || "Not specified",
         Completed: false
     };
 
@@ -116,12 +116,11 @@ InputBtn.addEventListener("click", function () {
 
     renderTasks(Task, SortMenu.value);
     SaveTask()
-    
+
     InputTask.value = "";
     DueDate.value = "";
     categoryMenu.value = "";
     selectedImportance = "";
-    });
-    
-    
-    
+});
+
+
