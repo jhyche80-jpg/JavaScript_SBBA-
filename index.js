@@ -14,16 +14,54 @@ const OrgTask = document.getElementById("orgtask");
 const OrgCat = document.getElementById("orgcat");
 const OrgDue = document.getElementById("orgdue");
 const OrgImport = document.getElementById("orgimpot");
-
+const SortMenu = document.getElementById("Sort")
 
 VeryImp.addEventListener("click", () => (selectedImportance = "Very"))
 NormalImp.addEventListener("click", () => (selectedImportance = "Normal"))
 NotImp.addEventListener("click", () => (selectedImportance = "Not"))
 
+function renderTasks(tasksToRender = Task, sortBy ="") {
+    listItem.innerHTML = "";
+    if(sortBy=== "Alphabetical"){
+        tasksToRender.sort((a,b) => a.Task.localeCompare(b.Task));
+    }else if (sortBy === "Date") {
+        tasksToRender.sort((a, b) => new Date(a.Due) - new Date(b.Due));
+    } else if (sortBy === "Importance") {
+        const importanceOrder = { "Very": 1, "Normal": 2, "Not": 3 };
+        tasksToRender.sort((a, b) => (importanceOrder[a.Importance] || 4) - (importanceOrder[b.Importance] || 4));
+    } else if (sortBy === "Category") {
+        tasksToRender.sort((a, b) => a.Category.localeCompare(b.Category));
+    }
+
+    tasksToRender.forEach((t) => {
+        const todo = document.createElement("tr");
+        todo.innerHTML = `
+            <td>${t.Task}</td>
+            <td>${t.Category}</td>
+            <td>${t.Due}</td>
+            <td>${t.Importance}</td>
+        `;
+
+        todo.addEventListener("click", function () {
+            const index = Task.indexOf(t);
+            if (index > -1) Task.splice(index, 1);
+            renderTasks();
+            console.log(Task);
+        });
+
+        listItem.appendChild(todo);
+    });
+} 
+SortMenu.addEventListener("change", function(){
+    renderTasks(Task, SortMenu.value)
+})
+
 InputBtn.addEventListener("click", function () {
     const TaskText = InputTask.value.trim();
     const Duetext = DueDate.value.trim();
     const selectedCategory = categoryMenu.value;
+    
+    
 
     if (TaskText === "") {
         errormsg.innerText = "Please enter a task!";
@@ -45,41 +83,13 @@ InputBtn.addEventListener("click", function () {
 
     Task.push(newtask);
 
-    const todo = document.createElement("tr");
-    todo.innerHTML = `
-        <td>${newtask.Task}</td>
-        <td>${newtask.Category}</td>
-        <td>${newtask.Due}</td>
-        <td>${newtask.Importance}</td>
-    `;
-
-    // Click to remove
-    todo.addEventListener("click", function () {
-        const index = Task.indexOf(newtask);
-        if (index > -1) Task.splice(index, 1);
-        todo.remove();
-        console.log(Task);
-    });
-
-    listItem.appendChild(todo);
-
+    renderTasks(Task, SortMenu.value);
+    
     InputTask.value = "";
     DueDate.value = "";
     categoryMenu.value = "";
     selectedImportance = "";
     });
-    function renderTassk(Tasktore)
-    OrgTask.addEventListener("click" function(){
-
-    })
-    OrgCat.addEventListener("click" function(){
-        
-    })
-    OrgDue.addEventListener("click" function(){
-        
-    })
-    OrgImport.addEventListener("click" function(){
-
-
-        
-    })
+    
+    
+    

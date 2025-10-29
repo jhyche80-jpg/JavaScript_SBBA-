@@ -14,8 +14,9 @@
 
     <div id="task input">
         <input type="text" id="inputTask" placeholder="Please Input task!">
-        <input type=" date" id="dueDate" placeholder="Please enter Due date">
+        <input type="date" id="dueDate" placeholder="Please enter Due date">
         <label for="Inportance"> How Inportant is this ?</label>
+        
         <button id="Very">Very</button>
         <button id="Normal">Normal</button>
         <button id="Not">Not Really</button>
@@ -27,6 +28,13 @@
             <option value="Personal">Personal</option>
             <option value="School">School</option>
             <option value="Other">Other</option>
+        </select>
+        <label for="Sort">Sort by:</label>
+        <select id="Sort">
+            <option value="Date">Date</option>
+            <option value="Alphabetical">Alphabetical</option>
+            <option value="Importance">Impotance</option>
+            <option value="Category">Category</option>
         </select>
         <p id="error"></p>
         <button type="button" id="submit">Submit Task!</button>
