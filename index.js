@@ -31,10 +31,25 @@ function renderTasks(tasksToRender = Task, sortBy ="") {
         tasksToRender.sort((a, b) => (importanceOrder[a.Importance] || 4) - (importanceOrder[b.Importance] || 4));
     } else if (sortBy === "Category") {
         tasksToRender.sort((a, b) => a.Category.localeCompare(b.Category));
+    }else if (sortBy === "Completed"){
+       tasksToRender.sort((a, b) => a.Completed - b.Completed);
     }
 
     tasksToRender.forEach((t) => {
         const todo = document.createElement("tr");
+        if (t.completed){
+             todo.classList.add("completed");;
+        }
+        if(t.due !== " No Due Date"){
+            const dueDate = new Date(t.due);
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            if (dueDate < Today && !t.Completed){
+                todo.classList.add("overdue")
+
+            }
+
+        }
         todo.innerHTML = `
             <td>${t.Task}</td>
             <td>${t.Category}</td>
@@ -43,10 +58,8 @@ function renderTasks(tasksToRender = Task, sortBy ="") {
         `;
 
         todo.addEventListener("click", function () {
-            const index = Task.indexOf(t);
-            if (index > -1) Task.splice(index, 1);
-            renderTasks();
-            console.log(Task);
+           todo.classList.toggle("completed");
+           t.completed = !t.completed;
         });
 
         listItem.appendChild(todo);
@@ -78,7 +91,8 @@ InputBtn.addEventListener("click", function () {
         Task: TaskText,
         Category: selectedCategory,
         Due: Duetext || "No due date",
-        Importance: selectedImportance || "Not specified"
+        Importance: selectedImportance || "Not specified", 
+        Completed: false
     };
 
     Task.push(newtask);
