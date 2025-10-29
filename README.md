@@ -84,10 +84,10 @@ Write functions to add tasks, update task status, check overdue tasks, and filte
     - I also changed the input for the date into a date so people can just put in a date (however i will need to figure out later how to add time)
     - i later changed some of the more complex coding into a function to make it look smoother in the code. After that I added the storage last because I didn't know where to put it.
 
-    3. styling 
+3. styling 
     - I Looked up a color scheme using figma and changed the colors accordingly 
     - I used coloring to show over due thing and added colors to the buttons when you hover a
-    4. HTML- 
+4. HTML- 
     - Lastly i went back to the HTML fixing the aria labels and adding roles for screen readers. during that time I was hopping around and making changes everywhere to fix slight mistakes in the code like typos and mismatch code. 
     
 
