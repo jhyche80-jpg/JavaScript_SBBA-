@@ -67,8 +67,9 @@ Write functions to add tasks, update task status, check overdue tasks, and filte
  - After making the skeleton I moved on to the Java script of the page. 
 2. I moved to Javascript
     - in this point I started by asigning the ID's a connst value. 
-    - I wanna start with making an aoo that could at the very least take down the information into a table or list 
-    and have all the info present. 
+    - I wanna start with making an aoo that could at the very least take down the information into a table or list and have all the info present. 
+    - I then changed my code from being a simple list into A table  so you can see everyhting in a table like way .
+    - I also added the Task inot an array that could be recalled into the table. 
 
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Intro to JavaScript SBA Task Manager </title>
 </head>
+
 <body>
-    
-<div id="task input">
-    <input type="text" id="inputTask" placeholder="Please Input task!">
-    <p id="error"></p>
-    <ul id = "listItem"></ul>
-    <button type="button" id="submit">Submit Task!</button>
-   
-    
-</div>
+
+    <div id="task input">
+        <input type="text" id="inputTask" placeholder="Please Input task!">
+        <input type=" date" id="dueDate" placeholder="Please enter Due date">
+        <label for="Inportance"> How Inportant is this ?</label>
+        <button id="Very">Very</button>
+        <button id="Normal">Normal</button>
+        <button id="Not">Not Really</button>
+
+        <label for="category" >Category:</label>
+        <select id="category">
+            <option value="">Select a category</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="School">School</option>
+            <option value="Other">Other</option>
+        </select>
+        <p id="error"></p>
+        <button type="button" id="submit">Submit Task!</button>
+
+        <table>
+            <thead>
+                
+                <tr>
+                    <th id="orgtask">Task</th>
+                    <th id="orgcat">Category</th>
+                    <th id = "orgdue">Due</th>
+                    <th id = "orgimpot">Importance</th>
+                </tr>
+            
+            </thead>
+            <tbody id="listItem"></tbody>
+        </table>
+
+
+
+    </div>
 </body>
+
 </html>
