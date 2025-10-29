@@ -127,7 +127,7 @@ Write functions to add tasks, update task status, check overdue tasks, and filte
 
 ### what I learned!
 - In this lab I learned how to code using arrays and use their properties. 
-- ```
+```
 if (t.Due !== "No due date") {
             const dueDate = new Date(t.Due);
             const today = new Date();
@@ -136,9 +136,8 @@ if (t.Due !== "No due date") {
                 todo.classList.add("overdue");
             }
         }
-
-
 ```
+
 this segment of code took me a while to  look up and i still only partially understand it. 
 
 ``` 
