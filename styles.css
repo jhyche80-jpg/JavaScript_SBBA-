@@ -1,9 +1,68 @@
+#body{
+    background-color: #A0522d;
+  color: #f5f5dc;
+  font-family: Arial, sans-serif;
+  padding: 2rem; 
+}
+
 .completed{
     text-decoration: line-through;
     opacity: 0.6;
 }
-
+#taskinput {
+  background-color: #f5f5dc;
+  color: #333;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+#taskinput > div {
+  margin-bottom: 1.5rem; 
+}
 .overdue{
     background-color: lightcoral;
     color: #a00;
+}
+.table{
+    border: 1px solid black;
+    margin-top: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+.Very{
+    background-color: #a00;
+
+    font-weight:400;
+}
+.Normal{
+    background-color: green;
+}
+.Not{
+    background-color: aqua;
+    
+}
+#submit {
+    font-size: larger;
+    width: 15%;
+    display: flex;
+    background-color: #A0522d;
+    color: #f5f5dc;
+
+}
+#table{
+    background-color: #f5f5dc;
+
+}
+#submit:hover, .Very:hover, .Normal:hover, .Not:hover{
+    background-color: #E35336;
+}
+
+
+
+.Very:focus, .Normal:focus, .Not:focus{
+    background-color:#A0522d;
+    border: dotted #f4a460 ;
+}
+#submit, .Very, .Normal, .Not {
+  transition: background-color 0.3s ease;
 }

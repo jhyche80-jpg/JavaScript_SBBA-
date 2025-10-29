@@ -23,15 +23,20 @@ function loadTasks() {
     renderTasks(Task, SortMenu.value);
 }
 loadTasks();
+//setting importance 
+
 VeryImp.addEventListener("click", () => (selectedImportance = "Very"))
 NormalImp.addEventListener("click", () => (selectedImportance = "Normal"))
 NotImp.addEventListener("click", () => (selectedImportance = "Not"))
+
+// localStorage
 function SaveTask(){
     localStorage.setitem("task", JSON.stringify(task))
 }
-
+//rendering task
 function renderTasks(tasksToRender = Task, sortBy ="") {
     listItem.innerHTML = "";
+    // sorting the task
     if(sortBy=== "Alphabetical"){
         tasksToRender.sort((a,b) => a.Task.localeCompare(b.Task));
     }else if (sortBy === "Date") {
@@ -42,7 +47,7 @@ function renderTasks(tasksToRender = Task, sortBy ="") {
     } else if (sortBy === "Category") {
         tasksToRender.sort((a, b) => a.Category.localeCompare(b.Category));
     }else if (sortBy === "Completed"){
-       tasksToRender.sort((a, b) => a.Completed - b.Completed);
+       tasksToRender.sort((a, b) => (a.Completed === b.Completed? 0 : a.Completed? 1: -1));
     }
 
     tasksToRender.forEach((t) => {
